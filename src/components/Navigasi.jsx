@@ -6,9 +6,9 @@ const Navigasi = ()=>{
             <Container>
                 <Navbar.Brand href="#home">Navbar</Navbar.Brand>
                 <Nav className="me-auto">
-                    <NavLink href="#home">Pokemon List</NavLink>
-                    <NavLink href="#features">Pokemon Detail</NavLink>
-                    <NavLink href="#pricing">My Pokemon List</NavLink>
+                    <NavLink href="/">Pokemon List</NavLink>
+                    <NavLink href="/detail">Pokemon Detail</NavLink>
+                    <NavLink href="my-pokemon">My Pokemon List</NavLink>
                 </Nav>
             </Container>
         </Navbar>)
