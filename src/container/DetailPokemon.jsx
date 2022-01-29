@@ -14,8 +14,7 @@ const DetailPokemon = () => {
         const ambilnama = url_split[4];
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${ambilnama}`)
         const file = await res.json();
-        setPokemon(file)
-
+        setPokemon(file);
     }
 
     data();
@@ -37,8 +36,9 @@ const DetailPokemon = () => {
 
                 <Row className='mb-5'>
                     <Col>
-                        <h1 className="text-center">{detail.name}</h1>
-
+                        <Card>
+                            <h1 className="text-center">{detail.name}</h1>
+                        </Card>
                     </Col>
 
                 </Row>
@@ -46,7 +46,7 @@ const DetailPokemon = () => {
                 <Card >
                     <Row>
                         <Col className='m-5 '>
-                            <Card className='p-5' style={{ border:'none' }}>
+                            <Card className='p-5' style={{ border: 'none' }}>
                                 <table className='text-center'>
                                     <tr>
                                         <th>ID</th>
@@ -70,31 +70,38 @@ const DetailPokemon = () => {
                                     <tr>
                                         <th>Abilities</th>
                                         <td>:</td>
-                                        <td>
-                                            {detail.abilities.map((abiliti, index) => {
-                                                return (
-                                                    <div style={{ color: 'white', backgroundColor: 'darkcyan' }}>
+                                        {detail.abilities.map((abiliti, index) => {
 
+
+                                            return (
+                                                <div style={{ color: 'white', backgroundColor: 'darkcyan', borderRadius: '25%' }} className='m-2'>
+                                                    <td>
                                                         {index + 1}.{abiliti.ability.name}
-                                                    </div>
-                                                )
-                                            })}
-                                        </td>
+                                                    </td>
+                                                </div>
+                                            )
+
+
+                                        })}
 
                                     </tr>
 
                                     <tr>
                                         <th>Type</th>
                                         <td>:</td>
-                                        <td className='m-2 p-2'>
-                                            {detail.types.map((types, index) => {
-                                                return (
-                                                    <div style={{ color: 'white', backgroundColor: 'darkgreen' }}>
+                                        <td>
+                                            
+                                                {detail.types.map((types, index) => {
+                                                    return (
+                                                        <div style={{ color: 'white', backgroundColor: 'darkgreen', borderRadius: '25%' }} className='m-2'>
+                                                            
+                                                                {index + 1}.{types.type.name}
+                                                            
 
-                                                        {index + 1}.{types.type.name}
-                                                    </div>
-                                                )
-                                            })}
+                                                        </div>
+                                                    )
+                                                })}
+                                            
                                         </td>
                                     </tr>
 
@@ -111,67 +118,77 @@ const DetailPokemon = () => {
 
                         <Col className='m-5'>
 
-                            <Card style={{ border:'none' }}>
+                            <Card style={{ border: 'none' }}>
                                 <CardImg src={detail.sprites.front_default} />
                             </Card>
 
                         </Col>
 
                         <Col className='m-5  '>
-                            <Card className='p-5' style={{ border:'none' }}>
+                            <Card className='p-5' style={{ border: 'none' }}>
                                 <table className='text-center'>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>HP</th>
                                         <td>:</td>
                                         <td>{detail.id}</td>
 
                                     </tr>
 
                                     <tr>
-                                        <th>Height</th>
+                                        <th>Attack</th>
                                         <td>:</td>
                                         <td>-</td>
                                     </tr>
 
                                     <tr>
-                                        <th>Weight</th>
+                                        <th>Defense</th>
                                         <td>:</td>
                                         <td>{detail.weight}</td>
                                     </tr>
 
                                     <tr>
-                                        <th>Abilities</th>
+                                        <th>Sp-Attack</th>
                                         <td>:</td>
-                                        <td>
-                                            {detail.abilities.map((abiliti, index) => {
-                                                return (
-                                                    <div style={{ color: 'white', backgroundColor: 'darkcyan' }}>
+                                        {detail.abilities.map((abiliti, index) => {
 
+
+                                            return (
+                                                <div style={{ color: 'white', backgroundColor: 'darkcyan', borderRadius: '25%' }} className='m-2'>
+                                                    <td>
                                                         {index + 1}.{abiliti.ability.name}
-                                                    </div>
-                                                )
-                                            })}
-                                        </td>
+                                                    </td>
+                                                </div>
+                                            )
 
+
+                                        })}
                                     </tr>
 
                                     <tr>
-                                        <th>Type</th>
+                                        <th>Sp-Defense</th>
                                         <td>:</td>
-                                        <td className='m-2 p-2'>
-                                            {detail.types.map((types, index) => {
-                                                return (
-                                                    <div style={{ color: 'white', backgroundColor: 'darkgreen' }}>
 
+                                        {detail.types.map((types, index) => {
+                                            return (
+                                                <div style={{ color: 'white', backgroundColor: 'darkgreen', borderRadius: '25%' }} className='m-2'>
+                                                    <td className=''>
                                                         {index + 1}.{types.type.name}
-                                                    </div>
-                                                )
-                                            })}
-                                        </td>
+                                                    </td>
+
+                                                </div>
+                                            )
+                                        })}
+
                                     </tr>
 
                                     <tr>
-                                        <th>Form</th>
+                                        <th>Speed</th>
+                                        <td>:</td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Total</th>
                                         <td>:</td>
                                         <td></td>
                                     </tr>
