@@ -8,7 +8,7 @@ const Navigasi = ()=>{
                 <Nav className="me-auto">
                     <NavLink href="/">Pokemon List</NavLink>
                     <NavLink href="/detail">Pokemon Detail</NavLink>
-                    <NavLink href="my-pokemon">My Pokemon List</NavLink>
+                    <NavLink href="mypokemon">My Pokemon List</NavLink>
                 </Nav>
             </Container>
         </Navbar>)

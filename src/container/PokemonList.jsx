@@ -1,6 +1,7 @@
 
 import { Container, Col, Card, CardImg, Button, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
+
 import swal from "sweetalert"
 
 
@@ -50,7 +51,7 @@ const PokemonList = () => {
             <Row className="text-center my-5" lg={6} md={4} xs={2} >
                 {pokemons.map((pokemon, index) => {
                     const titlePokemon = `DetailPokemon/${pokemon.name}`
-                    const catchPokemon = `CatchPokemon/${pokemon.name}`
+                    const myPokemon = `MyPokemon/${pokemon.name}`
                     return (
                         <Col className="mb-4">
                             <Card>
@@ -72,14 +73,21 @@ const PokemonList = () => {
                                     })
                                     .then((willCacth) => {
                                         if (willCacth) {
-                                          swal(`Gocha! you got a ${pokemon.name} as your pokemon`, {
+                                          swal(`Gocha! you got a ${pokemon.name} as your pokemon`,{
                                             icon: "success",
-                                          });
+                                            
+                                          })
+                                          .then(function() {
+                                                window.location = myPokemon;
+                                        });
+                                          
                                         } else {
                                           swal("Your imaginary file is safe!");
                                         }
-                                      })
-                                    }>Catch</Button>
+                                    })
+                                    
+                                    }
+                                    >Catch</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
