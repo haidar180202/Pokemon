@@ -1,6 +1,7 @@
 import React from 'react'
-import { Container, Row, Col, Card, CardImg } from "react-bootstrap";
+import { Container, Row, Col, Card, CardImg,Button } from "react-bootstrap";
 import { useState } from 'react'
+import swal from "sweetalert"
 
 const DetailPokemon = () => {
     const [detail, setPokemon] = useState([]);
@@ -19,6 +20,8 @@ const DetailPokemon = () => {
 
     data();
 
+    
+
     if (detail.sprites == undefined) {
         return (
             <div>
@@ -27,7 +30,8 @@ const DetailPokemon = () => {
         )
     }
 
-
+    const myPokemon = `MyPokemon/`
+    
 
     return (
 
@@ -198,6 +202,48 @@ const DetailPokemon = () => {
 
                         </Col>
 
+                    </Row>
+                    <Row>
+                        
+                    <Card.Footer>
+                                    
+                                    <Button className="w-100 " variant="outline-primary" onClick={() => swal({
+                                        title: "Are you sure?",
+                                        text: `catch ${detail.name} to your pokemon`,
+                                        icon: "warning",
+                                        buttons: true,
+                                        successMode: true,
+                                    })
+                                    .then((willCacth) => {
+                                        if (willCacth) {
+                                        const name = detail.name
+                                        const gambar = detail.sprites.front_default
+
+                                        if (Math.random() >= 0.5) {
+                                              swal(`Gocha! you got a ${name} as your pokemon`,{
+                                            icon: "success",
+                                            
+                                          })
+                                          .then(function() {
+                                                window.location = myPokemon
+                                                
+                                        });
+                                        }
+                                        else{
+                                            swal(`Sorry You Not cacth ${detail.name} as your pokemon`,{
+                                                icon: "error",
+                                                
+                                              })
+                                        }
+                                          
+                                        } else {
+                                          swal("Your imaginary file is safe!");
+                                        }
+                                    })
+                                    
+                                    }
+                                    >Catch</Button>
+                                </Card.Footer>
                     </Row>
                 </Card>
 
