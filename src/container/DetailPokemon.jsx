@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, Card, CardImg,Button } from "react-bootstrap";
+import { Container, Row, Col, Card, CardImg, Button } from "react-bootstrap";
 import { useState } from 'react'
 import swal from "sweetalert"
 
@@ -20,7 +20,7 @@ const DetailPokemon = () => {
 
     data();
 
-    
+
 
     if (detail.sprites == undefined) {
         return (
@@ -31,7 +31,7 @@ const DetailPokemon = () => {
     }
 
     const myPokemon = `MyPokemon/`
-    
+
 
     return (
 
@@ -40,17 +40,23 @@ const DetailPokemon = () => {
 
                 <Row className='mb-5'>
                     <Col>
-                        <Card>
-                            <h1 className="text-center">{detail.name}</h1>
+                        <Card >
+                            <table>
+                                <tr>
+                                    <th><h1 className="text-center">{detail.name}</h1></th>
+                                </tr>
+                            </table>
+                            
                         </Card>
                     </Col>
 
                 </Row>
 
                 <Card >
-                    <Row>
-                        <Col className='m-5 '>
-                            <Card className='p-5' style={{ border: 'none' }}>
+                    <Row lg={3} md={3} xs={1}  >
+                        
+                        <Col className='pt-5'>
+                            <Card style={{ border:'none' }}>
                                 <table className='text-center'>
                                     <tr>
                                         <th>ID</th>
@@ -94,18 +100,18 @@ const DetailPokemon = () => {
                                         <th>Type</th>
                                         <td>:</td>
                                         <td>
-                                            
-                                                {detail.types.map((types, index) => {
-                                                    return (
-                                                        <div style={{ color: 'white', backgroundColor: 'darkgreen', borderRadius: '25%' }} className='m-2'>
-                                                            
-                                                                {index + 1}.{types.type.name}
-                                                            
 
-                                                        </div>
-                                                    )
-                                                })}
-                                            
+                                            {detail.types.map((types, index) => {
+                                                return (
+                                                    <div style={{ color: 'white', backgroundColor: 'darkgreen', borderRadius: '25%' }} className='m-2'>
+
+                                                        {index + 1}.{types.type.name}
+
+
+                                                    </div>
+                                                )
+                                            })}
+
                                         </td>
                                     </tr>
 
@@ -120,16 +126,21 @@ const DetailPokemon = () => {
 
                         </Col>
 
-                        <Col className='m-5'>
+                        <Col className='pt-5'>
 
-                            <Card style={{ border: 'none' }}>
-                                <CardImg src={detail.sprites.front_default} />
+                            <Card style={{ border:'none' }}>
+                                <table>
+                                    <tr>
+                                        <th><CardImg   src={detail.sprites.front_default} /></th>
+                                    </tr>
+                                </table>
+                                
                             </Card>
 
                         </Col>
 
-                        <Col className='m-5  '>
-                            <Card className='p-5' style={{ border: 'none' }}>
+                        <Col className='pt-5'>
+                            <Card style={{ border:'none' }}>
                                 <table className='text-center'>
                                     <tr>
                                         <th>HP</th>
@@ -204,46 +215,45 @@ const DetailPokemon = () => {
 
                     </Row>
                     <Row>
-                        
-                    <Card.Footer>
-                                    
-                                    <Button className="w-100 " variant="outline-primary" onClick={() => swal({
-                                        title: "Are you sure?",
-                                        text: `catch ${detail.name} to your pokemon`,
-                                        icon: "warning",
-                                        buttons: true,
-                                        successMode: true,
-                                    })
-                                    .then((willCacth) => {
-                                        if (willCacth) {
-                                        const name = detail.name
-                                        const gambar = detail.sprites.front_default
+
+                        <Card.Footer>
+
+                            <Button className="w-100 " variant="outline-primary" onClick={() => swal({
+                                title: "Are you sure?",
+                                text: `catch ${detail.name} to your pokemon`,
+                                icon: "warning",
+                                buttons: true,
+                                successMode: true,
+                            })
+                                .then((willCacth) => {
+                                    if (willCacth) {
+
 
                                         if (Math.random() >= 0.5) {
-                                              swal(`Gocha! you got a ${name} as your pokemon`,{
-                                            icon: "success",
-                                            
-                                          })
-                                          .then(function() {
-                                                window.location = myPokemon
-                                                
-                                        });
+                                            swal(`Gocha! you got a ${detail.name} as your pokemon`, {
+                                                icon: "success",
+
+                                            })
+                                                .then(function (name, gambar) {
+                                                    window.location.href = myPokemon
+                                                    name = detail.name
+                                                });
                                         }
-                                        else{
-                                            swal(`Sorry You Not cacth ${detail.name} as your pokemon`,{
+                                        else {
+                                            swal(`Sorry you unsuccessful cacth ${detail.name} as your pokemon`, {
                                                 icon: "error",
-                                                
-                                              })
+
+                                            })
                                         }
-                                          
-                                        } else {
-                                          swal("Your imaginary file is safe!");
-                                        }
-                                    })
-                                    
+
+                                    } else {
+                                        swal("Your imaginary file is safe!");
                                     }
-                                    >Catch</Button>
-                                </Card.Footer>
+                                })
+
+                            }
+                            >Catch</Button>
+                        </Card.Footer>
                     </Row>
                 </Card>
 
