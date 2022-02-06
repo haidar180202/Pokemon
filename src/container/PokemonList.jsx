@@ -51,7 +51,7 @@ const PokemonList = () => {
             <Row className="text-center my-5" lg={6} md={4} xs={2} >
                 {pokemons.map((pokemon, index) => {
                     const titlePokemon = `DetailPokemon/${pokemon.name}`
-                    const myPokemon = `MyPokemon/${pokemon.name}`
+                    const myPokemon = `MyPokemon/`
                     return (
                         <Col className="mb-4">
                             <Card>
@@ -79,6 +79,7 @@ const PokemonList = () => {
                                           })
                                           .then(function() {
                                                 window.location = myPokemon;
+                                                
                                         });
                                           
                                         } else {
