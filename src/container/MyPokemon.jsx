@@ -1,27 +1,30 @@
-import { useState } from "react";
-import { PokemonList } from "./PokemonList";
-import swal from "sweetalert"
+import React, { useContext } from 'react';
+import { PokemonContext } from "./PokemonContext";
+import { Container, Col, Card, CardImg, Button, Row } from "react-bootstrap";
 
-const MyPokemon = () =>{
- 
+const MyPokemon = () => {
 
-    const data = async () => {
-        
-    //     const res2 = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-    //     const file2 = await res2.json();
-    //    console.log(file2)
-    }
+    const { capturedPokemons } = useContext(PokemonContext);
 
-    data();
-    
 
-    return(
+    return (
         <div>
-
+            <Container>
+                <Row className="text-center my-5" lg={6} md={4} xs={2} >
+                    {capturedPokemons.map((pokemon) =>
+                        <div>
+                            <Card>
+                                <CardImg src={pokemon.sprites.front_default} />
+                                <Card.Title>{pokemon.name}</Card.Title>
+                            </Card>
+                        </div>
+                    )}
+                </Row>
+            </Container>
         </div>
-    ) 
-    
+    )
+
 }
 
 
-export {MyPokemon}
+export { MyPokemon }

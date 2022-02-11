@@ -1,18 +1,21 @@
 
 import { Container, Col, Card, CardImg, Button, Row } from "react-bootstrap";
-import { useState, useEffect } from "react";
-
-
-
-
-
-
+import { useState, useEffect,useContext } from "react";
+import { PokemonContext } from "./PokemonContext";
+import { NavLink } from "react-router-dom";
 
 const PokemonList = () => {
 
     const [pokemons, setPokemons] = useState([]);
     const [count, setCount] = useState();
     const [loading, setLoading] = useState("https://pokeapi.co/api/v2/pokemon?limit=20");
+    
+    const {
+        pokemonss,
+        setPokemonss,
+        capturedPokemons,
+        setCapturedPokemons
+    } = useContext(PokemonContext);
 
 
     const getPokemon = async () => {
@@ -36,7 +39,7 @@ const PokemonList = () => {
 
     useEffect(() => {
         getPokemon();
-    }, [])
+    },[])
 
 
     return (
@@ -50,7 +53,7 @@ const PokemonList = () => {
 
             <Row className="text-center my-5" lg={6} md={4} xs={2} >
                 {pokemons.map((pokemon, index) => {
-                    const titlePokemon = `DetailPokemon/${pokemon.name}`
+                    const titlePokemon = `../detailPokemon/${pokemon.name}`
                    
                     return (
                         <Col className="mb-4">
@@ -61,9 +64,9 @@ const PokemonList = () => {
                                     <Card.Title>{pokemon.species.name}</Card.Title>
                                 </Card.Body>
                                 <Card.Footer>
-                                    <Card.Link href={titlePokemon}>
+                                    <NavLink to={titlePokemon}>
                                         <Button className="w-100 mb-2" variant="outline-success">Detail</Button>
-                                    </Card.Link>
+                                    </NavLink>
                                     
                                 </Card.Footer>
                             </Card>

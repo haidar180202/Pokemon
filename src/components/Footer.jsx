@@ -5,7 +5,7 @@ const Footer =()=>{
         <div>
             <nav className="navbar navbar-expand-sm navbar-dark bg-success">
                                <div className="container-fluid">
-                                <NavLink to="/" draggable="false" className="navbar-brand">
+                                <NavLink to="" draggable="false" className="navbar-brand">
                                      <span>Created By Muhammad Haidar Shahab</span>
                                 </NavLink>
 

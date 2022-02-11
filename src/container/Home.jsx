@@ -1,5 +1,6 @@
 
 import { Link } from "react-router-dom";
+import { Footer } from "../components/Footer";
 
 import {
     Container,
@@ -10,6 +11,7 @@ import {
 
 const Home = () => {
         return (
+            <div>
             <Container fluid={true} className="py-5">
                 <Container>
                     <Row>
@@ -33,19 +35,22 @@ const Home = () => {
                     <Row className="my-5 justify-content-center">
                         <Col md={{ size: 3 }} xl={{ size: 4 }}></Col>
                         <Col>
-                            <Link to="/PokemonList">
+                            <Link to="/pokemonList">
                                 <Button color="success" className="w-100">Pokemon List</Button>
                             </Link>
                         </Col>
                         <Col>
-                            <Link to="/MyPokemon">
+                            <Link to="/myPokemon">
                                 <Button color="success" className="w-100">My Pokemon</Button>
                             </Link>
                         </Col>
                         <Col md={{ size: 3 }} xl={{ size: 4 }}></Col>
                     </Row>
                 </Container>
+               
             </Container>
+            <Footer/>
+            </div>
 
             // footer halaman ini 
             

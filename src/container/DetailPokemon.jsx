@@ -1,42 +1,58 @@
 import React from 'react'
 import { Container, Row, Col, Card, CardImg, Button } from "react-bootstrap";
-import { useState } from 'react'
+import { useState ,useEffect,useContext } from 'react'
 import swal from "sweetalert"
+import { PokemonContext } from './PokemonContext';
+
 
 const DetailPokemon = () => {
     const [detail, setPokemon] = useState([]);
+    // const [mypokemon, setMyPokemon] = useState([]); 
 
+    const {
+        pokemonss,
+        setPokemonss,
+        capturedPokemons,
+        setCapturedPokemons
+    } = useContext(PokemonContext);
 
-
-
+    
     const data = async () => {
         let url = window.location.href;
-        let url_split = url.split("/")
+        let url_split = url.split("/");
         const ambilnama = url_split[4];
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${ambilnama}`)
         const file = await res.json();
         setPokemon(file);
     }
 
-    data();
+
+    useEffect(() => {
+        data();
+    },[])
 
 
+    const capture = (detail) => {
+        setCapturedPokemons([...capturedPokemons, detail]);
+    }
 
-    if (detail.sprites == undefined) {
+    
+    if (detail.sprites === undefined) {
         return (
             <div>
                 Loading...
+                
             </div>
         )
     }
 
-    const myPokemon = `MyPokemon/`
+    
 
 
     return (
 
         <div>
-            <Container fluid={true} className="py-5 " >
+            <Container fluid={true} className="py-5 " id="detailPokemon" >
 
                 <Row className='mb-5'>
                     <Col>
@@ -224,6 +240,7 @@ const DetailPokemon = () => {
                                 icon: "warning",
                                 buttons: true,
                                 successMode: true,
+                            
                             })
                                 .then((willCacth) => {
                                     if (willCacth) {
@@ -234,10 +251,11 @@ const DetailPokemon = () => {
                                                 icon: "success",
 
                                             })
-                                                .then(function (name, gambar) {
-                                                    window.location.href = myPokemon
-                                                    name = detail.name
+                                                .then(function kirim() {
+                                                    capture(detail)
+                                                                              
                                                 });
+                                                
                                         }
                                         else {
                                             swal(`Sorry you unsuccessful cacth ${detail.name} as your pokemon`, {
@@ -253,6 +271,8 @@ const DetailPokemon = () => {
 
                             }
                             >Catch</Button>
+
+                            
                         </Card.Footer>
                     </Row>
                 </Card>
@@ -265,4 +285,4 @@ const DetailPokemon = () => {
     )
 }
 
-export { DetailPokemon }
+export {DetailPokemon} ;
