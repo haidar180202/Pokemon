@@ -4,12 +4,14 @@ import React, {useState,createContext} from 'react';
  const PokemonProvider = (props) => {
     const [pokemonss, setPokemonss] = useState([]);
     const [capturedPokemons, setCapturedPokemons] = useState([]);
+    const [release, setRelease] = useState([]);
 
     const providerValue ={
         pokemonss,
         setPokemonss,
         capturedPokemons,
-        setCapturedPokemons
+        setCapturedPokemons,
+      
     }
 
   return(

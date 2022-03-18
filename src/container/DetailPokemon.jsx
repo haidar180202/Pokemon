@@ -11,6 +11,7 @@ const DetailPokemon = () => {
 
     const {
         pokemonss,
+
         setPokemonss,
         capturedPokemons,
         setCapturedPokemons
